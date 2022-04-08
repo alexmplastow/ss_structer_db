@@ -1,4 +1,4 @@
-# ss_structure_db
+# ss. anonymous
 Beta Version for a Tool to generate RNA secondary structures across the transcriptome, 
   should work fine if one wishes to generate secondary structures for the complete human transcriptome
 
