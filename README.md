@@ -105,6 +105,6 @@ Calibrating indicates how long transcriptome folding will take depending on fold
 
 Calibrate like so:
   
-  python RNA_test_3.py -i  hg38* -c -s 30 -ff 100 -cof calibration_output.csv
+  python ss_structure_db.py -i  hg38* -c -s 30 -ff 100 -cof calibration_output.csv
 
 This script is configured to use multiprocessing to switch folding modes based on the amount of time the script has taken to fold the nucleic acid sequence.
