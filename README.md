@@ -6,11 +6,12 @@ To begin utilizing this tool, one must have either RNAStructure or ViennnaRNA do
   ViennaRNA.
   
 ViennaRNA installation:
- 
- wget https://www.tbi.univie.ac.at/RNA/download/sourcecode/2_5_x/ViennaRNA-2.5.0.tar.gz
+
+` wget https://www.tbi.univie.ac.at/RNA/download/sourcecode/2_5_x/ViennaRNA-2.5.0.tar.gz
  tar -zxvf ViennaRNA-2.5.0.tar.gz
  cd ViennaRNA-2.5.0
- ./configure --with-python
+ ./configure --with-python`
+
  
 At this point, you should get an output indicating the install directories, make a not of these because ViennaRNA
   can be a pain to get running in python. You should get an output which looks like this:
@@ -37,8 +38,8 @@ Install Directories
  
  
 The python 3.x Interface binaries and scripts are both to be installed in the /usr/local/lib/python3.8/site-packages directory
- make
- sudo make install
+ `make
+ sudo make install`
  
 Depending on your version of libc, this should execute seamlessly. 
   If it doesn't and you have root privileges, it shouldn't be anything you shouldn't be able to resolve, 
@@ -53,30 +54,30 @@ I know this is kinda crude, I intend to change this in the future to
 Speaking of executing from Bash, RNAStructure is utilized via the os.system() command, so RNAStructure should be installed.
   
   
-  wget http://rna.urmc.rochester.edu/Releases/current/RNAstructureLinuxTextInterfaces64bit.tgz
+ `wget http://rna.urmc.rochester.edu/Releases/current/RNAstructureLinuxTextInterfaces64bit.tgz
   tar xvf RNAstructureLinuxTextInterfaces64bit.tgz
   cd RNAstructure
-  make all
+  make all`
  
 Note the present working directory for RNAStructure's installation. 
   You will need to add the executables to the PATH variable so,
   
-  cd ; vim .bashrc
+  `cd ; vim .bashrc`
   
 At the beginning of the file or anywhere else, really, write:
 
-  export PATH="/home/spectre/tools/RNAstructure/exe:$PATH"
-  export DATAPATH="/home/spectre/tools/RNAstructure/data_tables/"
+  `export PATH="/home/spectre/tools/RNAstructure/exe:$PATH"
+  export DATAPATH="/home/spectre/tools/RNAstructure/data_tables/"`
   
  After that, one should install the python libraries: 
  
-  pip install {matplotlib,numpy}
+ `pip install {matplotlib,numpy}`
 or 
-  pip3 install {matplotlib, numpy}
+  `pip3 install {matplotlib, numpy}`
   
 That is the end of the installation.
 
-  python ss_structure_db.py -h
+  `python ss_structure_db.py -h`
   
 To begin the calibration to estimate the amount of time needed to fold the transcriptome
 
@@ -105,15 +106,14 @@ Calibrating indicates how long transcriptome folding will take depending on fold
 
 Calibrate like so:
   
-  python ss_structure_db.py -i  hg38* -c -s 30 -ff 100 -cof calibration_output.csv
+ `python ss_structure_db.py -i  hg38* -c -s 30 -ff 100 -cof calibration_output.csv`
 
 This script is configured to use multiprocessing to switch folding modes based on the amount of time the script has taken to fold the nucleic acid sequence.
 
 The user must identify the nucleotide length at which the folding algorithm performs optimally. Execute the following:
 
-  python folding_time.py -it hg38* -ico calibration_output.csv
+  `python folding_time.py -it hg38* -ico calibration_output.csv`
   
-
   
 One should get a file output like this
   
@@ -123,11 +123,11 @@ It looks like the local minima is around 1800 nucleotides, so the cutoff for the
 
 To begin folding the transcriptome, one must execute the following command.
 
-   python ss_structure_db.py -i *0221* -s 10 -ft
+   `python ss_structure_db.py -i *0221* -s 10 -ft`
    
 By default, this script performs folding via ViennaRNA, but the folding mode may be changed to RNAStructure. To execute the folding with RNAStructure:
 
-  python ss_structure_db.py -i *0221* -s 10 -ft -rs 
+  `python ss_structure_db.py -i *0221* -s 10 -ft -rs` 
 
 If RNAStructure has been configured correctly, the following should output to the terminal:
 
