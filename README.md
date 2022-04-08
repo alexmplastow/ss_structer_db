@@ -52,13 +52,59 @@ I know this is kinda crude, I intend to change this in the future to
 
 Speaking of executing from Bash, RNAStructure is utilized via the os.system() command, so RNAStructure should be installed.
   
+  
   wget http://rna.urmc.rochester.edu/Releases/current/RNAstructureLinuxTextInterfaces64bit.tgz
   tar xvf RNAstructureLinuxTextInterfaces64bit.tgz
   cd RNAstructure
   make all
-  
+ 
 Note the present working directory for RNAStructure's installation. 
   You will need to add the executables to the PATH variable so,
   
-  cd 
+  cd ; vim .bashrc
   
+At the beginning of the file or anywhere else, really, write:
+
+  export PATH="/home/spectre/tools/RNAstructure/exe:$PATH"
+  export DATAPATH="/home/spectre/tools/RNAstructure/data_tables/"
+  
+ After that, one should install the python libraries: 
+ 
+  pip install {matplotlib,numpy}
+or 
+  pip3 install {matplotlib, numpy}
+  
+That is the end of the installation.
+
+  python ss_structure_db.py -h
+  
+To begin the calibration to estimate the amount of time needed to fold the transcriptome
+
+usage: ss_structure_db.py [-h] [-i INPUT] [-c] [-s [SAMPLE_SIZE]] [-ff [FAST_FOLD_TIME]] [-cof [CALIBRATION_OUTPUT]] [-ft] [-l [NUCLEIC_ACID_LENGTH]] [-rs]
+
+A CLI for generating or improving on transcriptome-wide secondarystructure datasets
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        Input transcriptome_file
+  -c, --calibrate       Determine how long folding will take depending on folding time of a set of nucleotides
+  -s [SAMPLE_SIZE], --sample_size [SAMPLE_SIZE]
+                        nucleic acid count for folding (default 50)
+  -ff [FAST_FOLD_TIME], --fast_fold_time [FAST_FOLD_TIME]
+                        nucleic acid count for folding (default 50)
+  -cof [CALIBRATION_OUTPUT], --calibration_output [CALIBRATION_OUTPUT]
+                        output file for calibration
+  -ft, --fold_transcriptome
+                        indicate if whole transcriptome should begin folding
+  -l [NUCLEIC_ACID_LENGTH], --nucleic_acid_length [NUCLEIC_ACID_LENGTH]
+                        maximum length of nucleic acids, anything above will be folded in iterations of 120 nucleotides
+  -rs, --RNAStructure   switches the folding algorithm to RNAStructure
+ 
+Calibrating indicates how long transcriptome folding will take depending on folding algorithm and preferred length.
+
+Calibrate like so:
+  
+  python RNA_test_3.py -i  hg38* -c -s 30 -ff 100 -cof calibration_output.csv
+
+This script is configured to use multiprocessing to switch folding modes based on the amount of time the script has taken to fold the nucleic acid sequence.
