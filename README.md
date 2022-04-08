@@ -108,3 +108,13 @@ Calibrate like so:
   python ss_structure_db.py -i  hg38* -c -s 30 -ff 100 -cof calibration_output.csv
 
 This script is configured to use multiprocessing to switch folding modes based on the amount of time the script has taken to fold the nucleic acid sequence.
+
+The user must identify the nucleotide length at which the folding algorithm performs optimally. Execute the following:
+
+  python folding_time.py -it hg38* -ico calibration_output.csv
+  
+One should get a file output like this
+  
+![folding_time_plot_test](https://user-images.githubusercontent.com/79552389/162453802-cae32cbd-4d93-43a1-9efa-d4b578d0d1ed.png)
+
+  
