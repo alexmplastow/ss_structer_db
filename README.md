@@ -113,8 +113,39 @@ The user must identify the nucleotide length at which the folding algorithm perf
 
   python folding_time.py -it hg38* -ico calibration_output.csv
   
+
+  
 One should get a file output like this
   
 ![folding_time_plot_test](https://user-images.githubusercontent.com/79552389/162453802-cae32cbd-4d93-43a1-9efa-d4b578d0d1ed.png)
 
-  
+It looks like the local minima is around 1800 nucleotides, so the cutoff for the slow folding mode is 1800 nucleotides. This is the default value in any case.
+
+To begin folding the transcriptome, one must execute the following command.
+
+   python ss_structure_db.py -i *0221* -s 10 -ft
+   
+By default, this script performs folding via ViennaRNA, but the folding mode may be changed to RNAStructure. To execute the folding with RNAStructure:
+
+  python ss_structure_db.py -i *0221* -s 10 -ft -rs 
+
+If RNAStructure has been configured correctly, the following should output to the terminal:
+
+Initializing nucleic acids...done.
+ 95% [================================================  ] |                     done.
+Writing output ct file...done.
+Single strand folding complete.
+Converting CT file...CT file conversion complete.
+
+RNAStructure seems a bit slower than ViennaRNA. In the future, RNAStructure will be configured to run alongside ViennaRNA so a database of secondary structure which compares multiple folding algorithm outputs.
+
+The input for the -s variable determines how many transcripts will be folded. This will be reconfigured to allow the user to fold the transcriptome indefinately.
+
+The output for the folding algorithms will be placed in a csv file in the following format:
+
+
+![Screenshot 2022-04-08 103733](https://user-images.githubusercontent.com/79552389/162459404-fbfde93d-2283-405c-87de-d6e4a2e2aae0.png)
+
+The script is configured to check the CSV each time it executes to ensure nothing is being refolded, so take care to ensure you are not indiscriminately folding nucleic acids without regard for algorithm types.
+
+
