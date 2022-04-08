@@ -58,6 +58,7 @@ Speaking of executing from Bash, RNAStructure is utilized via the os.system() co
   make all
   
 Note the present working directory for RNAStructure's installation. 
-  You will need to add the executables to the PATH variable
-
+  You will need to add the executables to the PATH variable so,
+  
+  cd 
   
