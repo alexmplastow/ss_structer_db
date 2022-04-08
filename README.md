@@ -66,8 +66,8 @@ Note the present working directory for RNAStructure's installation.
   
 At the beginning of the file or anywhere else, really, write:
 
-  `export PATH="/home/spectre/tools/RNAstructure/exe:$PATH"
-  export DATAPATH="/home/spectre/tools/RNAstructure/data_tables/"`
+  `export PATH="/home/spectre/tools/RNAstructure/exe:$PATH"`
+  `export DATAPATH="/home/spectre/tools/RNAstructure/data_tables/"`
   
  After that, one should install the python libraries: 
  
