@@ -1,5 +1,5 @@
-# ss. anonymous
-Beta Version for a Tool to generate RNA secondary structures across the transcriptome, 
+# ss_structure_db
+A Tool for generating RNA secondary structures across the transcriptome, 
   should work fine if one wishes to generate secondary structures for the complete human transcriptome
 
 To begin utilizing this tool, one must have either RNAStructure or ViennnaRNA downloaded. By default, this CLI will use
