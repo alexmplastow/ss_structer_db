@@ -108,14 +108,6 @@ def RNAStructure_from_file(file):
                          if 'ENERGY' not in line and '.' in line)
 
     #Mapping all the tuples to a function so that the MFE quantity can be isolated and sorting by free energy
-    print('/////////////////////////////////////')
-    print('energy_structures')
-    print(energy_structures[0])
-    print('energy_structures[0]')
-    print(energy_structures[0][0])
-    print('energy_structures[0].split(' ')')
-    print(energy_structures[0][0].split(' '))
-    print('/////////////////////////////////////')
     MFE_f = lambda input: (input[-1],float(input[0].split(' ')[2]))
     energy_structures = list(map(MFE_f,energy_structures))
     energy_structures.sort(key = lambda x: x[1])
